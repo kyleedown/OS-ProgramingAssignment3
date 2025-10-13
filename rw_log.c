@@ -19,25 +19,32 @@ int main (int argc, char *argv[]){
         switch (opt)
         {
         case 'c':
-            printf("Capacity is %s", optarg);
+            capacity = atoi(optarg);
+            printf("Capacity is ", capacity);
             break;
         case 'r':
-            printf("Creating Readers: %s", optarg);
+            reader_count = atoi(optarg);
+            printf("Creating Readers: %s", reader_count);
             break;
         case 'w':
-            printf("Creating Writers: %s", optarg);
+            writer_count = atoi(optarg);
+            printf("Creating Writers: %s", writer_count);
             break;
         case 'b':
-            printf("Entries writers append: %s", optarg);
+            writer_batch = atoi(optarg);
+            printf("Entries writers append: %s", writer_batch);
             break;
         case 's':
-            printf("runtime: %s", optarg);
+            runtime = atoi(optarg);
+            printf("runtime: %s", runtime);
             break;
         case 't':
-            printf("reader sleep: %s", optarg);
+            reader_sleep = atoi(optarg);
+            printf("reader sleep: %s", reader_sleep);
             break;
         case 'p':
-            printf("Writer sleep: %s", optarg);
+        writer_sleep = atoi(optarg);
+            printf("Writer sleep: %s", writer_sleep);
             break;
         default:
             break;

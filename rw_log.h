@@ -6,6 +6,7 @@
 #include <string.h>
 #include <stdio.h>
 #include<getopt.h>
+#include<stdlib.h>
 
 /* Maximum message payload per log entry (writer fills this) */
 #define RWLOG_MSG_MAX 64
@@ -38,3 +39,10 @@ int     rwlog_end_write(void);                                     // leave writ
 
 /* Wake any threads blocked in the monitor (used on shutdown). Safe to call anytime. */
 void    rwlog_wake_all(void);
+
+/**/
+int capacity,reader_count,writer_count,writer_batch,runtime,reader_sleep,writer_sleep;
+
+/*helper functions*/
+int create_readers(int count, int time);
+int create_writers(int count, int batch,int time);
