@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include<getopt.h>
 #include<stdlib.h>
+#include <stdbool.h>
+#include <unistd.h>
 
 /* Maximum message payload per log entry (writer fills this) */
 #define RWLOG_MSG_MAX 64
@@ -41,7 +43,9 @@ int     rwlog_end_write(void);                                     // leave writ
 void    rwlog_wake_all(void);
 
 /**/
-int capacity,reader_count,writer_count,writer_batch,runtime,reader_sleep,writer_sleep;
+int reader_count,writer_count,writer_batch,runtime,reader_sleep,writer_sleep;
+size_t capacity;
+bool stop_flag;
 
 /*helper functions*/
 int create_readers(int count, int time);
