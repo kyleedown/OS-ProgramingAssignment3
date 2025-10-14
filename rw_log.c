@@ -41,14 +41,15 @@ static void parse_args(int argc, char **argv, struct config *cfg){
     int opt;
     extern char *optarg;
 
-    struct option long_options[] = {
+    static struct option long_options[] = {
         {"capacity",required_argument,NULL,'c'},
         {"readers",required_argument,NULL,'r'},
         {"writers",required_argument,NULL,'w'},
         {"writer-batch",required_argument,NULL,'b'},
         {"seconds",required_argument, NULL, 's'},
         {"rd-us",required_argument, NULL, 'R'},
-        {"wr-us",required_argument, NULL, 'W'}
+        {"wr-us",required_argument, NULL, 'W'},
+        {0,0,0,0}
     };
 
     while((opt = getopt_long_only(argc,argv,"",long_options,NULL))!= -1){
@@ -59,31 +60,18 @@ static void parse_args(int argc, char **argv, struct config *cfg){
                 printf("Capacity is not valid and was set to the default value");
                 break;
             }
-            capacity = (size_t)optarg;
             break;
         case 'r':
-            reader_count = atoi(optarg);
-            printf("Creating Readers: %d", reader_count);
             break;
         case 'w':
-            writer_count = atoi(optarg);
-            printf("Creating Writers: %d", writer_count);
             break;
         case 'b':
-            writer_batch = atoi(optarg);
-            printf("Entries writers append: %d", writer_batch);
             break;
         case 's':
-            runtime = atoi(optarg);
-            printf("runtime: %d", runtime);
             break;
         case 'R':
-            reader_sleep = atoi(optarg);
-            printf("reader sleep: %d", reader_sleep);
             break;
         case 'W':
-        writer_sleep = atoi(optarg);
-            printf("Writer sleep: %d", writer_sleep);
             break;
         default:
             break;
@@ -115,10 +103,14 @@ int create_writers(int count, int batch, int delay){
 }
 
 int main (int argc, char *argv[]){
-
+    struct config cfg;
 
     //parse command line arguments
-    // parse_args(argc,argv,);
+    parse_args(argc,argv,&cfg);
+
+
+    printf("capacity=%d readers=%d writers=%d batch=%d seconds=%d rd_us=%d wr_us=%d dump=%d\n", cfg.capacity, cfg.readers, cfg.writers, cfg.writer_batch, cfg.seconds, cfg.rd_us, cfg.wr_us, cfg.dump_csv);
+
 
     //Initialize the monitor
     rwlog_create(capacity);

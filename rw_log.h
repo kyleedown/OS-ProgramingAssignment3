@@ -42,10 +42,7 @@ int     rwlog_end_write(void);                                     // leave writ
 /* Wake any threads blocked in the monitor (used on shutdown). Safe to call anytime. */
 void    rwlog_wake_all(void);
 
-/**/
-int reader_count,writer_count,writer_batch,runtime,reader_sleep,writer_sleep;
-size_t capacity;
-bool stop_flag;
+
 
 /*helper functions*/
 int create_readers(int count, int time);
