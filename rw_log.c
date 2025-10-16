@@ -1,5 +1,7 @@
 #include "rw_log.h"
 
+bool stop_flag;
+
 struct config {
     int capacity;
     int readers;
@@ -81,24 +83,23 @@ static void parse_args(int argc, char **argv, struct config *cfg){
 
 }
 
-
 // void signalHandler(int sig){
 //     stop_flag = true;
 //     exit(sig);
 // }
 
 int rwlog_create(size_t capacity){
-    printf("rwlog_create called");
+    printf("rwlog_create called\n");
     return 1;
 }
 
 int create_readers(int count, int delay){
-    printf("reader_create called");
+    printf("reader_create called\n");
     return 1;
 }
 
 int create_writers(int count, int batch, int delay){
-    printf("writer_create called");
+    printf("writer_create called\n");
     return 1;
 }
 
@@ -111,10 +112,9 @@ int main (int argc, char *argv[]){
 
     printf("capacity=%d readers=%d writers=%d batch=%d seconds=%d rd_us=%d wr_us=%d dump=%d\n", cfg.capacity, cfg.readers, cfg.writers, cfg.writer_batch, cfg.seconds, cfg.rd_us, cfg.wr_us, cfg.dump_csv);
 
-
     //Initialize the monitor
-    rwlog_create(capacity);
-
+    rwlog_create((size_t)cfg.capacity);
+    
     //Set up program stop mechanics
     stop_flag = false;
     /* 
@@ -122,10 +122,10 @@ int main (int argc, char *argv[]){
     */
 
     //Launch Worker threads
-    create_readers(reader_count,reader_sleep);
-    create_writers(writer_count,writer_batch,writer_sleep);
+    create_readers(cfg.readers,cfg.rd_us);
+    create_writers(cfg.writers,cfg.writer_batch,cfg.wr_us);
     //wait for runtime
-    sleep(runtime);
+    sleep(cfg.seconds);
     stop_flag = true;
     //join threads
     //Optional: dump the log
