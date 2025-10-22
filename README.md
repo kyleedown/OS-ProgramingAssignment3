@@ -16,8 +16,8 @@ https://man7.org/linux/man-pages/man3/pthread_join.3p.html
 Proof of Success:  
 
 Compling: 
-<img width="1428" height="781" alt="Screenshot 2025-10-21 at 11 30 01 PM" src="https://github.com/user-attachments/assets/c606ff45-af79-4704-8a2f-ddb95cfb3362" />
+<img width="1426" height="666" alt="Screenshot 2025-10-21 at 11 38 18 PM" src="https://github.com/user-attachments/assets/277b3847-f7bd-4083-863c-35cf7caf366c" />
 
 Running: 
 
-<img width="1428" height="774" alt="Screenshot 2025-10-21 at 11 30 44 PM" src="https://github.com/user-attachments/assets/44755fc0-48c5-430a-af07-4d941021fdc1" />
+<img width="1430" height="707" alt="Screenshot 2025-10-21 at 11 38 45 PM" src="https://github.com/user-attachments/assets/b61863a9-16aa-40b1-97b6-b7438abd9f42" />
